@@ -53,7 +53,7 @@ export class ArticleSeederService implements OnApplicationBootstrap {
         } = hit;
 
         const existingArticle = await this.articleModel
-          .findOne({ sourceId: hit.story_id })
+          .findOne({ sourceId: story_id || objectID })
           .exec();
 
         if (existingArticle) {
