@@ -4,6 +4,7 @@ import { ArticleController } from './article.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleSchema } from './schemas/article.schema';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ArticleSeederService } from './ArticleSeederService';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { ScheduleModule } from '@nestjs/schedule';
     HttpModule,
   ],
   controllers: [ArticleController],
-  providers: [ArticleService],
+  providers: [ArticleService, ArticleSeederService],
 })
 export class ArticleModule {}

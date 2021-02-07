@@ -21,7 +21,7 @@ export class Article {
   deleted: boolean;
 
   @Prop({ required: true })
-  storyId: string;
+  sourceId: string;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);
