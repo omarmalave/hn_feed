@@ -20,6 +20,7 @@ export class ArticleService {
     }
 
     article.deleted = true;
-    return article.save();
+    await article.save();
+    return article.id;
   }
 }

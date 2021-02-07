@@ -1,0 +1,9 @@
+<div class="articles">
+  <div *ngFor="let article of articles" fxLayout="row" fxLayoutAlign="start center" class="article">
+    <div fxFlex="1 1 85">
+      <p>{{article.title}} <span class="text-muted"> - {{article.author}} - </span></p>
+    </div>
+    <div fxFlex.gt-md="10" fxFlex.gt-xs="15">{{article.createdAt | date:'shortTime'}}</div>
+    <div fxFlex>X</div>
+  </div>
+</div>
