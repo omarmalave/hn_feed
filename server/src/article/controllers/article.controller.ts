@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Delete } from '@nestjs/common';
-import { ArticleService } from './article.service';
+import { ArticleService } from '../services/article.service';
 
 @Controller('api/articles')
 export class ArticleController {
@@ -11,7 +11,8 @@ export class ArticleController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.articleService.remove(id);
+  async remove(@Param('id') id: string) {
+    const _id = await this.articleService.remove(id);
+    return { id: _id };
   }
 }

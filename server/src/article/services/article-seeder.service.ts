@@ -5,7 +5,7 @@ import {
   OnApplicationBootstrap,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Article, ArticleDocument } from './schemas/article.schema';
+import { Article, ArticleDocument } from '../schemas/article.schema';
 import { Model } from 'mongoose';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { map } from 'rxjs/operators';

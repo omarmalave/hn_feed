@@ -1,10 +1,10 @@
 import { HttpModule, Module } from '@nestjs/common';
-import { ArticleService } from './article.service';
-import { ArticleController } from './article.controller';
+import { ArticleService } from './services/article.service';
+import { ArticleController } from './controllers/article.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleSchema } from './schemas/article.schema';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ArticleSeederService } from './ArticleSeederService';
+import { ArticleSeederService } from './services/article-seeder.service';
 
 @Module({
   imports: [
