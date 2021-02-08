@@ -1,4 +1,5 @@
-image: node:14
-variables:
-  DIR: server
-extends: .job
+server:
+  image: node:14
+  variables:
+    DIR: server
+  extends: .job
