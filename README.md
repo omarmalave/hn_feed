@@ -14,3 +14,8 @@ $ git clone https://gitlab.com/omarmalave/hn_feed.git
  ```
 
 App should be running in `localhost:8080`
+
+### Code coverage (server)
+ ```bash
+ $ cd server && npm run test:cov
+ ```
