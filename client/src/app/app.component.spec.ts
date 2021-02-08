@@ -1,11 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        FeedComponent,
+        CustomDatePipe,
       ],
     }).compileComponents();
   });
@@ -16,16 +24,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'client'`, () => {
+  it(`should have as title 'HN Feed'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('client');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('client app is running!');
+    console.log(app.title);
+    expect(app.title).toEqual('HN Feed');
   });
 });
