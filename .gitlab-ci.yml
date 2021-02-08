@@ -11,7 +11,7 @@ stages:
     - npm run test:ci
   cache:
     key: $DIR
-    paths:no
+    paths:
       - $DIR/node_modules/
 
 include:
