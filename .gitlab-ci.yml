@@ -1,0 +1,20 @@
+stages:
+  - test
+.job:
+  image: node:14
+  stage: test
+  before_script:
+    - cd $DIR
+    - npm install
+  script:
+    - npm run lint
+    - npm run test:ci
+  cache:
+    key: $DIR
+    paths:
+      - $DIR/.yarn
+      - $DIR/node_modules/
+
+include:
+  - local: '/client/.gitlab-ci.yml'
+  - local: '/server/.gitlab-ci.yml'
