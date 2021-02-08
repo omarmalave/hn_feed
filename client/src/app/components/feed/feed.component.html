@@ -5,8 +5,12 @@
     <div fxFlex="1 1 85">
       <p>{{article.title}} <span class="text-muted"> - {{article.author}} - </span></p>
     </div>
-    <div fxFlex.gt-md="0 5 10" fxFlex.gt-xs="15">{{article.createdAt | customDate}}</div>
-    <img src="assets/icons/trash.png" alt="X" fxFlex [ngClass]="{'hidden': !article.showDeleteButton}"
+    <div fxFlex.gt-md="15" fxFlex.gt-xs="15">{{article.createdAt | customDate}}</div>
+    <img src="assets/icons/trash.png" alt="X" fxFlex.gt-md="1.5" fxFlex.gt-xs="2" [ngClass]="{'hidden': !article.showDeleteButton}"
          (click)="deleteArticle($event, article, i)"/>
   </div>
+</div>
+
+<div class="error" *ngIf="error">
+  <h2>An error has occurred while getting the articles</h2>
 </div>

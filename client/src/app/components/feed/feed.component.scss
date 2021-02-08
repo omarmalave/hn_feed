@@ -7,6 +7,11 @@
   border-bottom: #ccc 1px solid;
   font-size: 13pt;
   color: #333;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .article:hover {
@@ -25,4 +30,8 @@ a {
 
 .hidden {
   visibility: hidden;
+}
+
+.error {
+  padding: 25px;
 }

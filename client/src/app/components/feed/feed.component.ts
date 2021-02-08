@@ -9,6 +9,7 @@ import { ArticlesService } from '../../services/articles.service';
 })
 export class FeedComponent implements OnInit {
   articles: Article[] = [];
+  error: any;
 
   constructor(private articlesService: ArticlesService) {}
 
@@ -19,6 +20,7 @@ export class FeedComponent implements OnInit {
   getData(): void {
     this.articlesService.getAll().subscribe({
       next: (articles) => (this.articles = articles),
+      error: (err) => (this.error = err),
     });
   }
 
