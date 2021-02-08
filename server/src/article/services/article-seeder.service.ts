@@ -45,7 +45,7 @@ export class ArticleSeederService implements OnApplicationBootstrap {
 
     for (const hit of hits) {
       try {
-        if (!this.validHit(hit)) return;
+        if (!this.validHit(hit)) continue;
 
         const {
           created_at,
@@ -82,6 +82,8 @@ export class ArticleSeederService implements OnApplicationBootstrap {
 
   validHit(hit: any) {
     const { story_title, story_url, title, url } = hit;
-    return (story_title || title) && (story_url || url);
+    const _title = story_title || title;
+    const _url = story_url || url;
+    return _title && _url;
   }
 }

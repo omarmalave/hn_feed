@@ -27,7 +27,6 @@ describe('AppComponent', () => {
   it(`should have as title 'HN Feed'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    console.log(app.title);
     expect(app.title).toEqual('HN Feed');
   });
 });
