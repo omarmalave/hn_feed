@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  client:
+    build: client
+    ports:
+      - "8080:8080"
+
+  server:
+    build: server
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    environment:
+      MONGO_URL: mongodb://database:27017/hn_feed
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"

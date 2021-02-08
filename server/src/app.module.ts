@@ -5,7 +5,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/hn_feed'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URL || 'mongodb://localhost:27017/hn_feed',
+    ),
     ArticleModule,
     ScheduleModule.forRoot(),
   ],
