@@ -1,6 +1,10 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+import { executablePath } from "puppeteer";
+
+process.env.CHROME_BIN = executablePath();
+
 module.exports = function (config) {
   config.set({
     basePath: "",

@@ -11,8 +11,7 @@ stages:
     - npm run test:ci
   cache:
     key: $DIR
-    paths:
-      - $DIR/.yarn
+    paths:no
       - $DIR/node_modules/
 
 include:
