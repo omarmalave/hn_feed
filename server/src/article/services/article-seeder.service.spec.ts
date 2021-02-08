@@ -2,22 +2,26 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ArticleSeederService } from './article-seeder.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
-  closeInMongodConnection,
+  closeInMongoConnection,
   rootMongooseTestModule,
 } from '../../../test/util/mongo-in-memory';
 import { ArticleDocument, ArticleSchema } from '../schemas/article.schema';
 import { Model } from 'mongoose';
 import { hitsMock } from '../../../test/mocks/hits-mock';
 import { HttpModule } from '@nestjs/common';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 describe('ArticleSeederService', () => {
   let service: ArticleSeederService;
   let model: Model<ArticleDocument>;
+  let mongo: MongoMemoryServer;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
+    mongo = new MongoMemoryServer();
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        rootMongooseTestModule(),
+        rootMongooseTestModule(mongo),
         MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
         HttpModule,
       ],
@@ -39,6 +43,6 @@ describe('ArticleSeederService', () => {
   });
 
   afterAll(async () => {
-    await closeInMongodConnection();
+    await closeInMongoConnection(mongo);
   });
 });

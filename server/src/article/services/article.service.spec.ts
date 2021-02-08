@@ -2,21 +2,25 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ArticleService } from './article.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
-  closeInMongodConnection,
+  closeInMongoConnection,
   rootMongooseTestModule,
 } from '../../../test/util/mongo-in-memory';
 import { ArticleDocument, ArticleSchema } from '../schemas/article.schema';
 import { Model } from 'mongoose';
 import { articlesMock } from '../../../test/mocks/articles-mock';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 describe('ArticleService', () => {
   let service: ArticleService;
   let model: Model<ArticleDocument>;
+  let mongo: MongoMemoryServer;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
+    mongo = new MongoMemoryServer();
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        rootMongooseTestModule(),
+        rootMongooseTestModule(mongo),
         MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
       ],
       providers: [ArticleService],
@@ -45,6 +49,6 @@ describe('ArticleService', () => {
   });
 
   afterAll(async () => {
-    await closeInMongodConnection();
+    await closeInMongoConnection(mongo);
   });
 });
