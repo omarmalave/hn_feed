@@ -21,4 +21,28 @@ export class FeedComponent implements OnInit {
       next: (articles) => (this.articles = articles),
     });
   }
+
+  openArticle(article: Article): void {
+    window.open(article.url, '_blank');
+  }
+
+  toggleDeleteButton(article: Article, val: boolean): void {
+    article.showDeleteButton = val;
+  }
+
+  trackByFn(index: number, item: Article): string {
+    return item._id;
+  }
+
+  deleteArticle(event: any, article: Article, index: number): void {
+    event.stopPropagation();
+    this.articlesService.delete(article._id).subscribe({
+      next: () => {
+        this.articles.splice(index, 1);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

@@ -7,9 +7,11 @@ export interface Article {
 
   url: string;
 
-  createdAt: Date;
+  createdAt: string;
 
   deleted: boolean;
 
   sourceId: string;
+
+  showDeleteButton?: boolean;
 }

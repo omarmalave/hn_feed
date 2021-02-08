@@ -6,8 +6,23 @@
   padding: 15px;
   border-bottom: #ccc 1px solid;
   font-size: 13pt;
+  color: #333;
+}
+
+.article:hover {
+  background-color: #fafafa;
+  cursor: pointer;
 }
 
 .text-muted {
   color: #999;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hidden {
+  visibility: hidden;
 }

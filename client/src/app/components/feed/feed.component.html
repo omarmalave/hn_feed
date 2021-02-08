@@ -1,9 +1,12 @@
 <div class="articles">
-  <div *ngFor="let article of articles" fxLayout="row" fxLayoutAlign="start center" class="article">
+  <div *ngFor="let article of articles, let i = index; trackBy: trackByFn" fxLayout="row" fxLayoutAlign="start center" class="article"
+       (click)="openArticle(article)" (mouseover)="toggleDeleteButton(article, true)"
+       (mouseleave)="toggleDeleteButton(article, false)">
     <div fxFlex="1 1 85">
       <p>{{article.title}} <span class="text-muted"> - {{article.author}} - </span></p>
     </div>
-    <div fxFlex.gt-md="10" fxFlex.gt-xs="15">{{article.createdAt | date:'shortTime'}}</div>
-    <div fxFlex>X</div>
+    <div fxFlex.gt-md="0 5 10" fxFlex.gt-xs="15">{{article.createdAt | customDate}}</div>
+    <img src="assets/icons/trash.png" alt="X" fxFlex [ngClass]="{'hidden': !article.showDeleteButton}"
+         (click)="deleteArticle($event, article, i)"/>
   </div>
 </div>
