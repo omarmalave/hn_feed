@@ -39,8 +39,14 @@ export class ArticleSeederService implements OnApplicationBootstrap {
   }
 
   async saveHNHits(hits: any[]): Promise<void> {
+    const existingDocs = await this.articleModel.find().exec();
+
+    if (existingDocs.length > 0) return;
+
     for (const hit of hits) {
       try {
+        if (!this.validHit(hit)) return;
+
         const {
           created_at,
           story_title,
@@ -72,5 +78,10 @@ export class ArticleSeederService implements OnApplicationBootstrap {
         this.logger.error(err);
       }
     }
+  }
+
+  validHit(hit: any) {
+    const { story_title, story_url, title, url } = hit;
+    return (story_title || title) && (story_url || url);
   }
 }
