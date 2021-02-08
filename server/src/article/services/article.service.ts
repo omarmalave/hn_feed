@@ -10,7 +10,10 @@ export class ArticleService {
   ) {}
 
   findAll() {
-    return this.articleModel.find({ deleted: false }).exec();
+    return this.articleModel
+      .find({ deleted: false })
+      .sort([['createdAt', -1]])
+      .exec();
   }
 
   async remove(id: string): Promise<string> {
